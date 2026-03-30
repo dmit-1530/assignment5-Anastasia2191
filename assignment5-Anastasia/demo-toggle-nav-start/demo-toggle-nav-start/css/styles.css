@@ -1,0 +1,290 @@
+body {
+    font-family: "PT Sans";
+    background: linear-gradient(90deg, #46A098 0%, #54A654 100%);
+    color: white;
+}
+
+/* Helper Classes */
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* *************** header & nav ****************** */
+/* Step: 1 Style the default/showing state. Starting with the mobile view, style the layout and links for how they will look when visible */
+
+header {
+    background-color: #9846A0;
+    color: #FCBF49;
+    /* not going to change color because needs to be added to "a" */
+    padding: 1rem;
+}
+
+header a {
+    text-decoration: none;
+    /* allows the clickable area to take up the full width and height of the li */
+    display: block;
+    color: #FFF;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 3.5rem;
+    /* 311.111% */
+    text-transform: uppercase;
+}
+
+
+.menu a:hover,
+.menu a:active {
+    background-color: #A258A9;
+    border-radius: 0.3125rem;
+}
+
+.toggle-btn {
+    background: #9846A0;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    width: 15.0625rem;
+    height: 3rem;
+}
+
+
+.toggle-btn:hover {
+    cursor: pointer;
+}
+
+
+.menu li {
+    /* the extra space from the additional line height, makes this a larger area and vertically centers the text */
+    line-height: 2.5rem;
+    text-align: center;
+  
+}
+
+.menu li:not(:last-child) {
+    /* add a border to all the list items except the last one */
+    border-bottom: 1px solid #FFF;
+}
+
+
+header nav {
+    /* style this for how it will look overlapped the main content */
+    /* this element does not have a parent container that is positioned relative, therefore it's positioned in relationship to the browser screen */
+    position: absolute;
+    top: 4.125rem;
+    left: 0;
+    width: 100vw;
+    background-color: #9846A0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out;
+}
+
+/* Step 3: Create a special class that will show the menu. This class name exists only in the CSS file for now. Next the javascript will add this class to the nav element for us. Let's go and do that in the main.js file */
+
+.show-nav {
+    max-height: 100vh;
+}
+
+/* ************************* content section ****************** */
+section {
+    padding: 3.125rem;
+    text-align: left;
+
+}
+
+section p {
+    color: #FFF;
+    font-family: "PT Sans";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+
+    width: 18rem;
+    margin-bottom: 3.25rem;
+}
+
+section h1 {
+    color: #FFF;
+    font-family: "PT Sans";
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    width: 18rem;
+    margin-bottom: 1.5rem;
+}
+
+span {
+    color: #FFF;
+    font-family: "PT Sans";
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+}
+
+section a {
+    width: 15.0625rem;
+    height: 3rem;
+    background-color: #9846A0;
+    padding: 0.75rem 1.5rem;
+    color: #FFF;
+    font-family: "PT Sans";
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+section a:hover {
+    background-color: #793880;
+}
+
+
+/* Step 4: add a media query and show the nav by default (hide the toggle button) and style it as a horizontal nav */
+@media (min-width: 600px) {
+    .inner-container {
+        max-width: 64rem;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    .toggle-btn {
+        /* this is hambergur nav */
+        display: none;
+    }
+
+    /* take your earlier css and "do the oppostie"*/
+    header nav {
+        position: static;
+        max-height: unset;
+        overflow: visible;
+        width: auto;
+    }
+
+    .menu,
+    header .inner-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .menu a:hover,
+    .menu a:active {
+        background-color:#A258A9;
+    }
+}
+
+
+
+
+/* Media Query */
+
+/* --- Desktop Media Query --- */
+@media (min-width: 768px) {
+
+    /*  Allow items to wrap to a second line */
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+    }
+
+    /* Hides the mobile hamburger button */
+    .toggle-btn {
+        display: none;
+    }
+
+    /* 3. Keep Logo and Cart on the top row */
+    .flex-container img[alt="logo"] {
+        order: 1;
+    }
+
+    .flex-container img[alt="shoping cart icon"] {
+        order: 2;
+        width: 1.5rem; 
+    }
+
+    nav {
+        order: 3;
+        flex-basis: 100%; 
+        margin-top: 0.5px;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        padding: 0;
+
+    }
+
+    .menu li:not(:last-child) {
+        border-bottom: none;
+    }
+
+    section h1 {
+        width: 30.5rem;
+    }
+
+    section p {
+        width: 30.5rem;
+    }
+
+    header {
+        margin-bottom: 2rem;
+    }
+}
+
+
+@media (min-width: 1024px) {
+     .inner-container {
+        max-width: 1820px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+    
+    /* Reset container to keep everything on ONE line */
+    .flex-container {
+        display: flex;
+        flex-wrap: nowrap; /* oneline navigation  */
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    nav {
+        order: 2;         /* Positions nav between logo (1) and cart (3) */
+        flex-basis: auto; /* Reset the 100% width from tablet */
+        flex-grow: 1;     /* Allows nav to fill the middle space */
+        margin-top: 0;    /* Removes the tablet top margin */
+    }
+
+    .menu {
+        display: flex;
+        justify-content: center; /* Centers the list of links */
+        list-style: none;
+        gap: 2rem;
+    }
+
+    img[alt="shoping cart icon"] {
+        order: 3;
+        width: 1.1095rem;
+    }
+
+    header {
+        margin-bottom: 4rem;
+    }
+}
